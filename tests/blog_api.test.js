@@ -30,16 +30,14 @@ describe('---- BLOG TESTS ------', () => {
     })
   })
 
-  describe('Check properties of blog', () => {
+  describe('Addition of a new blog and validate data', () => {
     test('Check the unique identifier id', async () => {
       const validExistingId = await helper.existingId()
 
       const response = await api.get(`/api/blogs/${validExistingId}`)
       expect(response.body.id).toBeDefined()
     })
-  })
 
-  describe('Addition of a new blog and validate data', () => {
     test('Succeeds blog added with valid data', async () => {
       const newBlog = {
         title: 'Carlos blog',
@@ -85,6 +83,22 @@ describe('---- BLOG TESTS ------', () => {
         .set('Authorization', 'Bearer ' + token)
         .send(newBlog)
         .expect(400)
+    })
+  })
+
+  describe('Addition of new blog with invalid token', () => {
+    test('Whe there isnt token the backed response with bad request 401', async () => {
+      const newBlog = {
+        title: 'Carlos blog',
+        author: 'Carlos Sturze',
+        url: 'carlos Sturce.com',
+        likes: 10
+      }
+
+      await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(401)
     })
   })
 })
