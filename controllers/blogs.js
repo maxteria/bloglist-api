@@ -21,6 +21,10 @@ blogsRouter.get('/:id', async (request, response, next) => {
 blogsRouter.post('/', async (request, response, next) => {
   const body = request.body
 
+  if (!body.title || !body.url) {
+    return response.status(400).json({ error: 'title or url missing' })
+  }
+
   // see middleware.js for tokenExtractor
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
 

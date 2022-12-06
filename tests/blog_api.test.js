@@ -48,8 +48,11 @@ describe('---- BLOG TESTS ------', () => {
         likes: 10
       }
 
+      const token = await helper.getToken()
+
       await api
         .post('/api/blogs')
+        .set('Authorization', 'Bearer ' + token)
         .send(newBlog)
         .expect(200)
         .expect('Content-Type', /application\/json/)
@@ -75,9 +78,11 @@ describe('---- BLOG TESTS ------', () => {
         author: 'Carlos Sturze',
         likes: 10
       }
+      const token = await helper.getToken()
 
       await api
         .post('/api/blogs')
+        .set('Authorization', 'Bearer ' + token)
         .send(newBlog)
         .expect(400)
     })
