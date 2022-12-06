@@ -1,9 +1,10 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1heHRlcmlhIiwiaWQiOiI2MzhmOTViNzgzNjBmYzE4MGNhODAzYTUiLCJpYXQiOjE2NzAzNjAwODR9.UWzQs9jN-7tkwKZ7E_eQWOVbn_dBF68Ch4jvvtOPfPk
 
 {
-    "title": "Masxterias blog",
-    "author": "Maximiliano Morales",
-    "url": "https://maximilianomorales.com",
-    "likes": 0
+    "title": "Josefina blog",
+    "author": "Josefina Cabral",
+    "url": "https://josefina.com",
+    "likes": 130
 }
