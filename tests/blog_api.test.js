@@ -136,6 +136,36 @@ describe('---- USER TESTS ------', () => {
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toHaveLength(usersAtStart.length)
   })
+
+  test('creation fails with password length less than 3', async () => {
+    const newUser = {
+      username: 'maxteria',
+      name: 'maximiliano morales',
+      password: 'ti'
+    }
+
+    const result = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+    expect(result.body.error).toContain('password must be at least 3 characters long')
+  })
+
+  test('creation fails with username length less than 3', async () => {
+    const newUser = {
+      username: 'ma',
+      name: 'maximiliano morales',
+      password: 'timcup'
+    }
+
+    const result = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+    expect(result.body.error).toContain('User validation failed: username: Path `username` (`ma`) is shorter than the minimum allowed length (3).')
+  })
 })
 
 afterAll(() => {
