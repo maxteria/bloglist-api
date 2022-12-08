@@ -1,0 +1,9 @@
+PUT http://localhost:3001/api/blogs/638faf8dc14f5698536d407d
+
+Content-Type: application/json
+{
+    "title": "Josefina blog",
+    "author": "Josefina Cabral",
+    "url": "https://josefina.com",
+    "likes": 131
+}
